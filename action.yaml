@@ -1,0 +1,29 @@
+name: Execute Cloudify Workflow
+author: Isaac Shabtay
+description: Executes a workflow on a Cloudify deployment
+branding:
+  icon: cloud
+  color: white
+inputs:
+  environment-name:
+    description: Name of Cloudify environment to execute workflow on
+    required: true
+  workflow:
+    description: Name of workflow to execute
+    required: true
+  parameters-file:
+    description: Path to YAML/JSON containing workflow parameters
+    required: false
+    default: "-"
+runs:
+  using: docker
+  image: docker://cloudifyplatform/cloudify-cli:5.0.5.1
+  entrypoint: cfyci
+  args:
+    - execute-workflow
+    - '--name'
+    - ${{ inputs.environment-name }}
+    - '--workflow'
+    - ${{ inputs.workflow }}
+    - '--parameters-file'
+    - ${{ inputs.parameters-file }}
