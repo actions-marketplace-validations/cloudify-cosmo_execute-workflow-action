@@ -20,7 +20,7 @@ jobs:
   test_job:
     steps:
       - name: Execute installation workflow
-        uses: cloudify-cosmo/execute-workflow-action@v1.2
+        uses: cloudify-cosmo/execute-workflow-action@v1.3
         with:
           environment-name: "my-environment"
           workflow: "install"
